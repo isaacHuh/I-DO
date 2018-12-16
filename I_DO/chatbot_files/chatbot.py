@@ -50,8 +50,12 @@ class TkinterGUI(tk.Tk):
         self.conversation = ScrolledText.ScrolledText(self, state='normal', bg = '#212121', fg = 'white')
         self.conversation.grid(column=0, row=2, columnspan=2, sticky='nesw', padx=3, pady=3)
 
+
         self.conversation['state'] = 'normal'
-        self.conversation.insert(tk.END, "Enter your name:"+ "\n")
+        self.conversation.insert(tk.END, "Commands:" + "\n" + "     'tweet [input tweet]'" + "\n" + "     'play song'" + "\n" + "     'play game'" + "\n" + 
+                                        "       game controls:" + "\n" + "           WASD to move" + "\n" + "           Arrow Keys to aim" + 
+                                        "\n" + "           SPACE to shoot" + "\n")
+        self.conversation.insert(tk.END, "\n" + "Enter your name:" + "\n")
         self.conversation['state'] = 'disabled'
 
     def get_response(self):
@@ -92,7 +96,7 @@ class TkinterGUI(tk.Tk):
                 status = "From " + self.user_name + ": " + user_input[6:]
                 new_tweet = tweet.Tweet(status = status)
                 self.conversation['state'] = 'normal'
-                self.conversation.insert(tk.END, self.user_name + " just tweeted: " + user_input[6:] + "\n")
+                self.conversation.insert(tk.END, "\n" + self.user_name + " just tweeted: " + user_input[6:] + "\n" + "Check out your tweet at: https://twitter.com/project_i_do" + "\n" + "\n")
                 self.conversation['state'] = 'disabled'
 
             else:
