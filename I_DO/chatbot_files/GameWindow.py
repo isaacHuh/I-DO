@@ -47,6 +47,9 @@ class GameWindow(pyglet.window.Window):
 		
 		screen = default_screen
 
+		self.window_exists = True
+		self.player_health = 3
+
 		self.screen_xpos = 0
 		self.screen_ypos = 0
 		self.shake = 0
@@ -64,7 +67,6 @@ class GameWindow(pyglet.window.Window):
 		self.player_moving = False
 		self.player_xscale = 4
 		self.player_yscale = 4
-		self.player_health = 3
 
 		self.player = GameObject(window.width/2,window.height/2, 'game_files/gun.png')
 		self.player.spd = 400;
@@ -110,10 +112,6 @@ class GameWindow(pyglet.window.Window):
 							color = (self.label_color))
 
 	def update_points_label(self,dt):
-		if self.player_health <= 0:
-			self.close()
-			pyglet.app.exit()
-
 		self.color_increase += self.color_increment
 
 		color = colorsys.hsv_to_rgb(self.color_increase, 0.57, 1)
@@ -153,6 +151,7 @@ class GameWindow(pyglet.window.Window):
 
 		# leave game
 		if symbol == key.ESCAPE:
+			self.window_exists = False
 			self.close()
 			pyglet.app.exit()
 
@@ -342,8 +341,10 @@ class GameWindow(pyglet.window.Window):
 			if distance < (16*4):
 				if enemy in self.enemy_list:
 					self.enemy_list.remove(enemy)
-					self.player_health -= 1
 					self.num_enemies -= 1
+					self.player_health -= 1
+			if self.player_health <= 0:
+						break
 
 	def update_screen(self):
 		self.shake *= 0.9
@@ -400,15 +401,21 @@ class GameWindow(pyglet.window.Window):
 			self.sprite_change_occured = False
 
 	def update(self, dt):
-		self.update_points_label(dt)
-		self.player_character_update(dt)
-		self.circle_update(dt)
-		self.update_screen()
-		self.player_enemy_collision()
-		self.enemy_bullet_collision()
-		self.update_enemy_creation()
-		self.update_enemy_attributes(dt)
-		self.update_player(dt)
-		self.update_shooting()
-		self.update_player_bullet(dt)
+		if self.window_exists:
+			self.update_points_label(dt)
+			self.player_character_update(dt)
+			self.circle_update(dt)
+			self.update_screen()
+			self.player_enemy_collision()
+			self.enemy_bullet_collision()
+			self.update_enemy_creation()
+			self.update_enemy_attributes(dt)
+			self.update_player(dt)
+			self.update_shooting()
+			self.update_player_bullet(dt)
+
+		if self.player_health <= 0 and self.window_exists:
+			self.window_exists = False
+			self.close()
+			pyglet.app.exit()
 
