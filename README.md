@@ -1,7 +1,7 @@
 # I-DO
 Descriptions:
 
-I-DO is a CST 205 group project created in Fall 2018. It was developed by Oscar Ruiz, Isaac Torres and Daniel Miguel. I-DO is a chatbot that can start a game, a beat, a conversation, and send a tweet when asked. We came up with this idea by just brainstorming and just spewing random ideas and then somehow we came up with the idea of making a multipurpose chatbot. Our group split up the project into three parts: chatbot, beat, and game. After we finished all 3 parts, one of us put it together and made it work perfectly.
+I-DO is a CST 205 group project created in Fall 2018. It was developed by Isaac Torres, Oscar Ruiz, and Daniel Miguel. I-DO is a chatbot that can start a game, a beat, a conversation, and send a tweet when asked. We came up with this idea by just brainstorming and just spewing random ideas and then somehow we came up with the idea of making a multipurpose chatbot. Our group split up the project into three parts: chatbot, beat, and game. After we finished all 3 parts, one of us put it together and made it work perfectly.
 
 What you need to install:
 
